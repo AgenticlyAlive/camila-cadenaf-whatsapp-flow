@@ -1,0 +1,105 @@
+{
+  "version": "1.0",
+  "data_api_version": "3.0",
+  "name": "Agendar sesion CF Fotografia",
+  "screens": [
+    {
+      "id": "START",
+      "title": "Agendar sesión",
+      "layout": {
+        "type": "SingleColumnLayout",
+        "children": [
+          {
+            "type": "Text",
+            "text": "Completa tus datos para ver horarios disponibles"
+          },
+          {
+            "type": "TextInput",
+            "label": "Nombre",
+            "name": "name",
+            "required": true
+          },
+          {
+            "type": "TextInput",
+            "label": "Email",
+            "name": "email",
+            "required": true
+          },
+          {
+            "type": "PhoneInput",
+            "label": "Teléfono",
+            "name": "phone",
+            "required": true
+          },
+          {
+            "type": "Selector",
+            "label": "Tipo de sesión",
+            "name": "type",
+            "required": true,
+            "options": [
+              { "label": "A Mini estudio 45m", "value": "A" },
+              { "label": "B Cita inicial 60m", "value": "B" },
+              { "label": "C 303 Studio 90m", "value": "C" }
+            ]
+          },
+          {
+            "type": "DatePicker",
+            "label": "Fecha",
+            "name": "date",
+            "required": true
+          },
+          {
+            "type": "Button",
+            "label": "Ver horarios",
+            "onclick": {
+              "action": "NATIVE_NAVIGATION",
+              "next": "SLOTS"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "SLOTS",
+      "title": "Elige horario",
+      "layout": {
+        "type": "SingleColumnLayout",
+        "children": [
+          {
+            "type": "Picker",
+            "name": "slot",
+            "label": "Horarios disponibles",
+            "required": true,
+            "options": "@{data.availableSlots}"
+          },
+          {
+            "type": "Button",
+            "label": "Confirmar",
+            "onclick": { "action": "SUBMIT", "next": "CONFIRM" }
+          }
+        ]
+      }
+    },
+    {
+      "id": "CONFIRM",
+      "title": "Confirmación",
+      "layout": {
+        "type": "SingleColumnLayout",
+        "children": [
+          {
+            "type": "Text",
+            "text": "Tu reserva fue enviada. Recibirás confirmación en WhatsApp."
+          }
+        ]
+      }
+    }
+  ],
+  "callbacks": {
+    "data_exchange": {
+      "url": "REPLACE_WITH_PUBLIC_URL/flows/data-exchange"
+    },
+    "on_complete": {
+      "url": "REPLACE_WITH_PUBLIC_URL/flows/complete"
+    }
+  }
+}
