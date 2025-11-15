@@ -22,15 +22,14 @@ const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
 
 // Webhook Verify
 app.get('/webhook', (req, res) => {
-  try {
-    const verify_Token = req.query['hub.verify_token'];
-    const challenge = req.query['hub.challenge'];
-    if (verify_Token && challenge && verifyToken === VERIFY_TOKEN) {
-      return res.status(200).send(challenge);
-    }
-    return res.sendStatus(403);
-  } catch (e) {
-    return res.sendStatus(500);
+  const mode = req.query['hub.mode'];
+  const token = req.query['hub.verify_token'];
+  const challenge = req.query['hub.challenge'];
+
+  if (mode === 'subscribe' && token === process.env.VERIFY_TOKEN) {
+    res.status(200).send(challenge);
+  } else {
+    res.status(403).send('Error');
   }
 });
 
