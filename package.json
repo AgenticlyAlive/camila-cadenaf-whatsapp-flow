@@ -1,0 +1,18 @@
+{
+  "name": "camila-cadenaf-whatsapp-flow",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "20.0.0"
+  },
+  "scripts": {
+    "start": "node newapp.js",
+    "dev": "node --watch newapp.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "luxon": "^3.5.0",
+    "dotenv": "^16.4.5"
+  }
+}
