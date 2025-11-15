@@ -18,14 +18,14 @@ const app = express();
 app.use(express.json({ limit: '1mb' }));
 
 const PORT = process.env.PORT || 3000;
-const VERIFYTOKEN = process.env.VERIFYTOKEN;
+const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
 
 // Webhook Verify
 app.get('/webhook', (req, res) => {
   try {
-    const verifyToken = req.query['hub.verify_token'];
+    const verify_Token = req.query['hub.verify_token'];
     const challenge = req.query['hub.challenge'];
-    if (verifyToken && challenge && verifyToken === VERIFYTOKEN) {
+    if (verify_Token && challenge && verifyToken === VERIFY_TOKEN) {
       return res.status(200).send(challenge);
     }
     return res.sendStatus(403);
