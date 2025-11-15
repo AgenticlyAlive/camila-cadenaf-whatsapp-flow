@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: camila-cadenaf-whatsapp-flow
+    env: node
+    plan: free
+    runtime: node
+    buildCommand: npm install
+    startCommand: node newapp.js
+    autoDeploy: true
+    envVars:
+      - key: VERIFYTOKEN
+        value: changeMe_Your_Unique_Token
+      - key: PORT
+        value: '3000'
+      - key: TZ
+        value: America/Bogota
+      - key: WABATOKEN
+        sync: false
+      - key: PHONEID
+        sync: false
+      - key: CATALOGID
+        sync: false
+      - key: FLOWID
+        sync: false
+      - key: FLOWTEMPLATENAME
+        value: agendar-sesion-con-flow
+      - key: FLOWPRIVATEKEYPATH
+        value: /etc/secrets/flowprivatekey.pem
+    secretFiles:
+      - name: flowprivatekey.pem
+        mountPath: /etc/secrets/flowprivatekey.pem
