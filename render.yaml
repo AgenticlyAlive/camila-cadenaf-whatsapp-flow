@@ -8,19 +8,19 @@ services:
     startCommand: node newapp.js
     autoDeploy: true
     envVars:
-      - key: VERIFYTOKEN
+      - key: VERIFY_TOKEN
         value: changeMe_Your_Unique_Token
       - key: PORT
         value: '3000'
       - key: TZ
         value: America/Bogota
-      - key: WABATOKEN
+      - key: WABA_TOKEN
         sync: false
-      - key: PHONEID
+      - key: PHONE_ID
         sync: false
-      - key: CATALOGID
+      - key: CATALOG_ID
         sync: false
-      - key: FLOWID
+      - key: FLOW_ID
         sync: false
       - key: FLOWTEMPLATENAME
         value: agendar-sesion-con-flow
